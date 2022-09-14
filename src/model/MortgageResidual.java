@@ -2,7 +2,7 @@ package model;
 
 import java.math.BigDecimal;
 
-class MortgageResidual {
+public class MortgageResidual {
 
     private final BigDecimal amount;
     private final BigDecimal duration;

@@ -2,7 +2,7 @@ package model;
 
 import java.math.BigDecimal;
 
-class RateAmounts {
+public class RateAmounts {
 
     private final BigDecimal rateAmount;
     private final BigDecimal interestAmount;
