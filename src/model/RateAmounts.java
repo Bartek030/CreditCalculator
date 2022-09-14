@@ -9,7 +9,7 @@ public class RateAmounts {
     private final BigDecimal capitalAmount;
 
 
-    RateAmounts(final BigDecimal rateAmount, final BigDecimal interestAmount, final BigDecimal capitalAmount) {
+    public RateAmounts(final BigDecimal rateAmount, final BigDecimal interestAmount, final BigDecimal capitalAmount) {
         this.rateAmount = rateAmount;
         this.interestAmount = interestAmount;
         this.capitalAmount = capitalAmount;
@@ -23,7 +23,7 @@ public class RateAmounts {
         return interestAmount;
     }
 
-    BigDecimal getCapitalAmount() {
+    public BigDecimal getCapitalAmount() {
         return capitalAmount;
     }
 }

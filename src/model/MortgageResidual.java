@@ -7,16 +7,16 @@ public class MortgageResidual {
     private final BigDecimal amount;
     private final BigDecimal duration;
 
-    MortgageResidual(final BigDecimal amount, final BigDecimal duration) {
+    public MortgageResidual(final BigDecimal amount, final BigDecimal duration) {
         this.amount = amount;
         this.duration = duration;
     }
 
-    BigDecimal getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    BigDecimal getDuration() {
+    public BigDecimal getDuration() {
         return duration;
     }
 }

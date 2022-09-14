@@ -24,7 +24,7 @@ public class Rate {
         return timePoint;
     }
 
-    MortgageResidual getMortgageResidual() {
+    public MortgageResidual getMortgageResidual() {
         return mortgageResidual;
     }
 

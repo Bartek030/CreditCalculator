@@ -10,7 +10,7 @@ import java.time.temporal.ChronoUnit;
 
 public class TimePointServiceImpl implements TimePointService {
 
-    public static final BigDecimal MONTHS_IN_YEAR = BigDecimal.valueOf(12);
+    private static final BigDecimal MONTHS_IN_YEAR = BigDecimal.valueOf(12);
 
     private static LocalDate calculateDate(final BigDecimal rateNumber, final InputData inputData) {
         return inputData.getRepaymentStartDate().plus(rateNumber.subtract(BigDecimal.ONE).intValue(), ChronoUnit.MONTHS);
