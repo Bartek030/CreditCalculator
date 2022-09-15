@@ -54,7 +54,7 @@ public class AmountCalculationServiceImpl implements AmountCalculationService {
 
         final BigDecimal q = calculateQ(interestPercent);
 
-        final BigDecimal rateAmount = calculateConstantRateAmount(q, residualAmount, inputData.getMonthsDuration());
+        final BigDecimal rateAmount = calculateConstantRateAmount(q, inputData.getAmount(), inputData.getMonthsDuration());
         final BigDecimal interestAmount = calculateInterestAmount(residualAmount, interestPercent);
         final BigDecimal capitalAmount = calculateConstantCapitalAmount(rateAmount, interestAmount);
 
@@ -84,18 +84,18 @@ public class AmountCalculationServiceImpl implements AmountCalculationService {
     }
 
     private BigDecimal calculateQ(final BigDecimal interestPercent) {
-        return interestPercent.divide(MONTHS_IN_YEAR, RoundingMode.HALF_UP).add(BigDecimal.ONE);
+        return interestPercent.divide(MONTHS_IN_YEAR, 10, RoundingMode.HALF_UP).add(BigDecimal.ONE);
     }
 
     private BigDecimal calculateConstantRateAmount(final BigDecimal q, final BigDecimal amount, final BigDecimal monthsDuration) {
         return amount
                 .multiply(q.pow(monthsDuration.intValue()))
                 .multiply(q.subtract(BigDecimal.ONE))
-                .divide(q.pow(monthsDuration.intValue()).subtract(BigDecimal.ONE),2, RoundingMode.HALF_UP);
+                .divide(q.pow(monthsDuration.intValue()).subtract(BigDecimal.ONE), 50, RoundingMode.HALF_UP);
     }
 
     private BigDecimal calculateInterestAmount(final BigDecimal residualAmount, final BigDecimal interestPercent) {
-        return residualAmount.multiply(interestPercent).divide(MONTHS_IN_YEAR, 2, RoundingMode.HALF_UP);
+        return residualAmount.multiply(interestPercent).divide(MONTHS_IN_YEAR, 50, RoundingMode.HALF_UP);
     }
 
     private BigDecimal calculateConstantCapitalAmount(final BigDecimal rateAmount, final BigDecimal interestAmount) {
@@ -103,6 +103,6 @@ public class AmountCalculationServiceImpl implements AmountCalculationService {
     }
 
     private BigDecimal calculateDecreasingCapitalAmount(final BigDecimal amount, final BigDecimal monthsDuration) {
-        return amount.divide(monthsDuration, 2, RoundingMode.HALF_UP);
+        return amount.divide(monthsDuration, 50, RoundingMode.HALF_UP);
     }
 }

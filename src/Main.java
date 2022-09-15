@@ -1,6 +1,8 @@
 import model.InputData;
+import model.RateType;
 import service.*;
 
+import javax.security.sasl.SaslServerFactory;
 import java.math.BigDecimal;
 
 class Main {
@@ -9,7 +11,7 @@ class Main {
 
         InputData inputData = new InputData()
                 .withAmount(new BigDecimal("298000"))
-                .withMonthsDuration(BigDecimal.valueOf(160));
+                .withRateType(RateType.CONSTANT);
 
         PrintingService printingService = new PrintingServiceImpl();
         RateCalculationService rateCalculationService = new RateCalculationServiceImpl(
@@ -18,7 +20,11 @@ class Main {
                 new ResidualCalculationServiceImpl()
         );
 
-        MortgageCalculationService mortgageCalculationService = new MortgageCalculationServiceImpl(printingService, rateCalculationService);
+        MortgageCalculationService mortgageCalculationService = new MortgageCalculationServiceImpl(
+                printingService,
+                rateCalculationService,
+                SummaryServiceFactory.create()
+        );
         mortgageCalculationService.calculate(inputData);
     }
 }

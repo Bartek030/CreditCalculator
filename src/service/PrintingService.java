@@ -1,19 +1,24 @@
 package service;
 
 import model.InputData;
+import model.Rate;
+import model.Summary;
+
+import java.util.List;
 
 public interface PrintingService {
 
-    String INTEREST_SUM = "SUMA ODSETEK";
+    String INTEREST_SUM = "SUMA ODSETEK: ";
     String RATE_NUMBER = "NR: ";
     String YEAR = "ROK: ";
     String MONTH = "MIESIĄC: ";
     String DATE = "DATA: ";
     String MONTHS = " MIESIĘCY ";
     String RATE = "RATA: ";
-    String INTEREST = "OPROCENTOWANIE: ";
+    String INTEREST = "ODSETKI: ";
     String CAPITAL = "KAPITAŁ: ";
-    String LEFT = "POZOSTAŁO: ";
+    String LEFT_AMOUNT = "PKWOTA: ";
+    String LEFT_MONTHS = "PMSC: ";
     String MORTGAGE_AMOUNT = "KWOTA KREDYTU: ";
     String MORTGAGE_PERIOD = "OKRES KREDYTOWANIA: ";
 
@@ -22,4 +27,8 @@ public interface PrintingService {
     String PERCENT = "%  ";
 
     void printInputDataInfo(final InputData inputData);
+
+    void printRates(final List<Rate> rates);
+
+    void printSummary(Summary summary);
 }

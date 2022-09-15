@@ -22,7 +22,7 @@ public class ResidualCalculationServiceImpl implements ResidualCalculationServic
         final BigDecimal previousDuration = previousRate.getMortgageResidual().getDuration();
         final BigDecimal previousResidual = previousRate.getMortgageResidual().getAmount();
 
-        final BigDecimal residualAmount = previousResidual.subtract(rateAmounts.getCapitalAmount());
+        final BigDecimal residualAmount = previousResidual.subtract(rateAmounts.getCapitalAmount()).max(BigDecimal.ZERO);
         final BigDecimal residualDuration = previousDuration.subtract(BigDecimal.ONE);
 
         return new MortgageResidual(residualAmount, residualDuration);

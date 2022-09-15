@@ -15,15 +15,15 @@ public class TimePoint {
         this.month = month;
     }
 
-    LocalDate getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    BigDecimal getYear() {
+    public BigDecimal getYear() {
         return year;
     }
 
-    BigDecimal getMonth() {
+    public BigDecimal getMonth() {
         return month;
     }
 }

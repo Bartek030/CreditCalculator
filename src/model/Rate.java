@@ -16,11 +16,11 @@ public class Rate {
         this.rateAmounts = rateAmounts;
     }
 
-    BigDecimal getRateNumber() {
+    public BigDecimal getRateNumber() {
         return rateNumber;
     }
 
-    TimePoint getTimePoint() {
+    public TimePoint getTimePoint() {
         return timePoint;
     }
 
@@ -28,7 +28,7 @@ public class Rate {
         return mortgageResidual;
     }
 
-    RateAmounts getRateAmounts() {
+    public RateAmounts getRateAmounts() {
         return rateAmounts;
     }
 }
