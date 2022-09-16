@@ -8,12 +8,20 @@ public class Rate {
     private final TimePoint timePoint;
     private final MortgageResidual mortgageResidual;
     private final RateAmounts rateAmounts;
+    private final MortgageReference mortgageReference;
 
-    public Rate(final BigDecimal rateNumber, final TimePoint timePoint, final MortgageResidual mortgageResidual, final RateAmounts rateAmounts) {
+    public Rate(
+            final BigDecimal rateNumber,
+            final TimePoint timePoint,
+            final MortgageResidual mortgageResidual,
+            final RateAmounts rateAmounts,
+            final MortgageReference mortgageReference
+    ) {
         this.rateNumber = rateNumber;
         this.timePoint = timePoint;
         this.mortgageResidual = mortgageResidual;
         this.rateAmounts = rateAmounts;
+        this.mortgageReference = mortgageReference;
     }
 
     public BigDecimal getRateNumber() {

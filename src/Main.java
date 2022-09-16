@@ -2,7 +2,6 @@ import model.InputData;
 import model.RateType;
 import service.*;
 
-import javax.security.sasl.SaslServerFactory;
 import java.math.BigDecimal;
 
 class Main {
@@ -17,7 +16,9 @@ class Main {
         RateCalculationService rateCalculationService = new RateCalculationServiceImpl(
                 new TimePointServiceImpl(),
                 new AmountCalculationServiceImpl(),
-                new ResidualCalculationServiceImpl()
+                new OverpaymentCalculationServiceImpl(),
+                new ResidualCalculationServiceImpl(),
+                new ReferenceCalculationServiceImpl()
         );
 
         MortgageCalculationService mortgageCalculationService = new MortgageCalculationServiceImpl(
