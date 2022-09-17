@@ -39,4 +39,8 @@ public class Rate {
     public RateAmounts getRateAmounts() {
         return rateAmounts;
     }
+
+    public MortgageReference getMortgageReference() {
+        return mortgageReference;
+    }
 }

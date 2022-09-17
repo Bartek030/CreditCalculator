@@ -16,11 +16,11 @@ public class DecreasingAmountsCalculationServiceImpl implements DecreasingAmount
     public RateAmounts calculate(final InputData inputData, final Overpayment overpayment) {
         final BigDecimal interestPercent = inputData.getInterestPercent();
         final BigDecimal residualAmount = inputData.getAmount();
-
-
+        final BigDecimal referenceAmount = inputData.getAmount();
+        final BigDecimal referenceDuration = inputData.getMonthsDuration();
 
         final BigDecimal interestAmount = calculateInterestAmount(residualAmount, interestPercent);
-        final BigDecimal capitalAmount = calculateCapitalAmount(residualAmount, inputData.getMonthsDuration(), residualAmount);
+        final BigDecimal capitalAmount = calculateCapitalAmount(referenceAmount, referenceDuration, residualAmount);
         final BigDecimal rateAmount = capitalAmount.add(interestAmount);
 
         return new RateAmounts(rateAmount, interestAmount, capitalAmount, overpayment);
@@ -30,9 +30,11 @@ public class DecreasingAmountsCalculationServiceImpl implements DecreasingAmount
     public RateAmounts calculate(final InputData inputData, final Overpayment overpayment, final Rate previousRate) {
         final BigDecimal interestPercent = inputData.getInterestPercent();
         final BigDecimal residualAmount = previousRate.getMortgageResidual().getAmount();
+        final BigDecimal referenceAmount = previousRate.getMortgageReference().getReferenceAmount();
+        final BigDecimal referenceDuration = previousRate.getMortgageReference().getReferenceDuration();
 
         final BigDecimal interestAmount = calculateInterestAmount(residualAmount, interestPercent);
-        final BigDecimal capitalAmount = calculateCapitalAmount(inputData.getAmount(), inputData.getMonthsDuration(), residualAmount);
+        final BigDecimal capitalAmount = calculateCapitalAmount(referenceAmount, referenceDuration, residualAmount);
         final BigDecimal rateAmount = capitalAmount.add(interestAmount);
 
         return new RateAmounts(rateAmount, interestAmount, capitalAmount, overpayment);

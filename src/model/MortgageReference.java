@@ -12,11 +12,11 @@ public class MortgageReference {
         this.referenceDuration = referenceDuration;
     }
 
-    BigDecimal getReferenceAmount() {
+    public BigDecimal getReferenceAmount() {
         return referenceAmount;
     }
 
-    BigDecimal getReferenceDuration() {
+    public BigDecimal getReferenceDuration() {
         return referenceDuration;
     }
 }

@@ -17,10 +17,11 @@ public class ConstantAmountsCalculationServiceImpl implements ConstantAmountsCal
         final BigDecimal interestPercent = inputData.getInterestPercent();
         final BigDecimal q = calculateQ(interestPercent);
         final BigDecimal residualAmount = inputData.getAmount();
-
+        final BigDecimal referenceAmount = inputData.getAmount();
+        final BigDecimal referenceDuration = inputData.getMonthsDuration();
 
         final BigDecimal interestAmount = calculateInterestAmount(residualAmount, interestPercent);
-        final BigDecimal rateAmount = calculateConstantRateAmount(q, residualAmount, inputData.getMonthsDuration(), interestAmount, residualAmount);
+        final BigDecimal rateAmount = calculateConstantRateAmount(q, referenceAmount, referenceDuration, interestAmount, residualAmount);
         final BigDecimal capitalAmount = calculateCapitalAmount(rateAmount, interestAmount, residualAmount);
 
         return new RateAmounts(rateAmount, interestAmount, capitalAmount, overpayment);
@@ -31,10 +32,11 @@ public class ConstantAmountsCalculationServiceImpl implements ConstantAmountsCal
         final BigDecimal interestPercent = inputData.getInterestPercent();
         final BigDecimal q = calculateQ(interestPercent);
         final BigDecimal residualAmount = previousRate.getMortgageResidual().getAmount();
-
+        final BigDecimal referenceAmount = previousRate.getMortgageReference().getReferenceAmount();
+        final BigDecimal referenceDuration = previousRate.getMortgageReference().getReferenceDuration();
 
         final BigDecimal interestAmount = calculateInterestAmount(residualAmount, interestPercent);
-        final BigDecimal rateAmount = calculateConstantRateAmount(q, inputData.getAmount(), inputData.getMonthsDuration(), interestAmount, residualAmount);
+        final BigDecimal rateAmount = calculateConstantRateAmount(q, referenceAmount, referenceDuration, interestAmount, residualAmount);
         final BigDecimal capitalAmount = calculateCapitalAmount(rateAmount, interestAmount, residualAmount);
 
         return new RateAmounts(rateAmount, interestAmount, capitalAmount, overpayment);
